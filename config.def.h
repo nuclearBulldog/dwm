@@ -4,7 +4,7 @@
  * - dwm-fixmultimon-6.4.diff
  * - dwm-focusmaster-return-6.2.diff
  * - dwm-colorbar-6.3.diff
- *
+ * - dwm-backlight-20241021-351084d.diff
  * */
 
 
@@ -77,6 +77,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *upbrightness[]   = { "xbacklight", "-inc", "10", NULL };
+static const char *downbrightness[] = { "xbacklight", "-dec", "10", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -119,6 +121,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,                       XK_c,      quit,           {0} },
+	{ 0,            XF86XK_MonBrightnessUp,    spawn,          {.v = upbrightness } },
+    { 0,            XF86XK_MonBrightnessDown,  spawn,          {.v = downbrightness } },
+
 };
 
 /* button definitions */
